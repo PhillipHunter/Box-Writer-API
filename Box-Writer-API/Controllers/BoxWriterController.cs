@@ -13,11 +13,11 @@ namespace Box_Writer_API.Controllers
     {
         // GET api/boxwriter/
         [HttpGet]
-        public string Get(String word, String label, Int32 spacing = 2, Int32 offset = 10)
+        public IActionResult Get(String word, String label, Int32 spacing = 2, Int32 offset = 10)
         {
             if(word == null)
             {
-                return "INVALID BOX: No Word Specified!";
+                return Content("INVALID BOX: No Word Specified!");
             }
 
             if(label == null)
@@ -31,7 +31,7 @@ namespace Box_Writer_API.Controllers
 
             _BoxWriter.Boxify();
 
-            return _BoxWriter.ToString();
+            return Content(_BoxWriter.ToString());
         }
     }
 }
